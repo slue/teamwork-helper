@@ -14,13 +14,13 @@ var elixir = require('laravel-elixir'),
  */
 
 elixir(function(mix) {
-    mix.copy('node_modules/vue/dist/vue.js', 'public/vendor/vue.js');
-    mix.copy('node_modules/vue-resource/dist/vue-resource.js', 'public/vendor/vue-resource.js');
-    mix.copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/bootstrap.min.js');
-    mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/vendor/jquery.min.js');
+    mix.copy('node_modules/vue/dist/vue.js', 'public/vendor/vue.js')
+        .copy('node_modules/vue-resource/dist/vue-resource.js', 'public/vendor/vue-resource.js')
+        .copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/bootstrap.min.js')
+        .copy('node_modules/jquery/dist/jquery.min.js', 'public/vendor/jquery.min.js')
+        .copy('node_modules/font-awesome/css/font-awesome.min.css', 'public/vendor/font-awesome.min.css');
+
     mix.sass('app.scss')
-       .version('css/app.css');
-    //mix.babel('**/*.js')
-    //   .version(['js/app.js']);
-    mix.copy('node_modules/font-awesome/css/font-awesome.min.css', 'public/vendor/font-awesome.min.css');
+       .babel('*.js')
+       .version(['css/app.css','js/all.js']);
 });

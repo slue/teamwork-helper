@@ -47,7 +47,7 @@ class HomeController extends Controller
                     {
                         if(!$task_mailaddress)
                         {
-                            foreach (Teamwork::project(intval($project['id']))->emailaddress()["emailaddress"]["addresses"] as $address)
+                            foreach (Teamwork::project(intval($project['id']))->emailAddress()["emailaddress"]["addresses"] as $address)
                             {
                                 if(array_key_exists("tasks", $address))
                                 {
