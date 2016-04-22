@@ -10,4 +10,4 @@ Homestead.json
 /public/js
 /public/vendor
 
-/.idea
+/.idea/*
