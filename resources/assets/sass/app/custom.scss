@@ -1,0 +1,23 @@
+
+.section-body {
+    padding: $grid-gutter-width / 2;
+}
+
+.project-list {
+
+    .btn-toggle {
+        margin-left: $grid-gutter-width / 6;
+
+        &:first-of-type {
+            margin-left: inherit;
+        }
+    }
+}
+
+.btn-toggle {
+    background-color: $table-bg-hover;
+
+    &.btn-primary.is-selected {
+        background-color: $brand-primary;
+    }
+}

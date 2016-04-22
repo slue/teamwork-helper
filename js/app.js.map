@@ -1,0 +1,1 @@
+{"version":3,"sources":["alert_auth_key.js"],"names":[],"mappings":";;;;;;AAIA,MAAA,eAAA,iBAAA,CAAA","file":"app.js","sourcesContent":["/**\n * Created by christophschleifer on 20.04.16.\n */\n\nalert(teamworkhelper.teamwork_auth_key);\n"],"sourceRoot":"/source/"}

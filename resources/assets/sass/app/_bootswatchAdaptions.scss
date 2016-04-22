@@ -1,0 +1,15 @@
+.form-control {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    background-color: $table-bg-hover;
+    transition: border-color ease-in-out $transition-duration-std;
+    color: $brand-primary;
+
+    &:focus {
+
+        border-color: $brand-primary;
+    }
+}
