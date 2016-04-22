@@ -14,6 +14,7 @@
     "jquery": "^2.2.3",
     "laravel-elixir": "^5.0.0",
     "laravel-elixir-jade": "^0.1.9",
+    "moment": "^2.13.0",
     "vue": "^1.0.21",
     "vue-resource": "^0.7.0"
   }

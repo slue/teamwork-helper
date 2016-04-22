@@ -6,11 +6,8 @@
 .project-list {
 
     .btn-toggle {
-        margin-left: $grid-gutter-width / 6;
-
-        &:first-of-type {
-            margin-left: inherit;
-        }
+        margin-right: $grid-gutter-width / 6;
+        margin-bottom: $grid-gutter-width / 6;
     }
 }
 
@@ -20,4 +17,33 @@
     &.btn-primary.is-selected {
         background-color: $brand-primary;
     }
+}
+
+section {
+    padding-top: $grid-gutter-width;
+    margin-top: $grid-gutter-width;
+
+    border-top: 2px solid $table-bg-hover;
+
+    &:first-of-type {
+        padding-top: initial;
+        margin-top: initial;
+
+        border-top: initial;
+    }
+}
+
+
+//Transitions
+
+.add-section-transition {
+    transition: all $transition-duration-std ease;
+    overflow: hidden;
+}
+
+.add-section-enter {
+    height: 0;
+    width: 100%;
+    padding: 0 10%;
+    opacity: 0;
 }

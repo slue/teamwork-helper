@@ -15,10 +15,6 @@
     <!-- Styles -->
      <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
-    <!-- JS -->
-    <script src="/vendor/vue.js"></script>
-    <script src="/vendor/vue-resource.js"></script>
-
     <style>
         body {
             font-family: 'Lato';
@@ -79,8 +75,11 @@
     @yield('content')
 
     <!-- JavaScripts -->
+    <script src="/vendor/vue.js"></script>
+    <script src="/vendor/vue-resource.js"></script>
     <script src="/vendor/jquery.min.js"></script>
     <script src="/vendor/bootstrap.min.js"></script>
-     <script src="{{ elixir('js/all.js') }}"></script>
+    <script src="/vendor/moment.min.js"></script>
+    <script src="{{ elixir('js/all.js') }}"></script>
 </body>
 </html>

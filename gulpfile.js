@@ -18,7 +18,13 @@ elixir(function(mix) {
         .copy('node_modules/vue-resource/dist/vue-resource.js', 'public/vendor/vue-resource.js')
         .copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/bootstrap.min.js')
         .copy('node_modules/jquery/dist/jquery.min.js', 'public/vendor/jquery.min.js')
-        .copy('node_modules/font-awesome/css/font-awesome.min.css', 'public/vendor/font-awesome.min.css');
+
+        .copy('node_modules/font-awesome/css/font-awesome.min.css', 'public/vendor/font-awesome.min.css')
+        .copy('node_modules/font-awesome/fonts/fontawesome-webfont.ttf', 'public/fonts/fontawesome-webfont.ttf')
+        .copy('node_modules/font-awesome/fonts/fontawesome-webfont.woff', 'public/fonts/fontawesome-webfont.woff')
+        .copy('node_modules/font-awesome/fonts/fontawesome-webfont.woff2', 'public/fonts/fontawesome-webfont.woff2')
+
+        .copy('node_modules/moment/min/moment.min.js', 'public/vendor/moment.min.js');
 
     mix.sass('app.scss')
        .babel('*.js')

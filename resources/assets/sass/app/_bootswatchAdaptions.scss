@@ -1,7 +1,7 @@
 .form-control {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    //-webkit-box-shadow: none;
+    //-moz-box-shadow: none;
+    //box-shadow: none;
     border: 0;
     border-bottom: 2px solid #ccc;
     background-color: $table-bg-hover;
@@ -9,7 +9,16 @@
     color: $brand-primary;
 
     &:focus {
-
         border-color: $brand-primary;
+    }
+}
+
+.input-group-btn {
+
+    &:last-child > .btn {
+        z-index: 3;
+    }
+    .btn {
+        border-bottom: 2px solid $brand-primary;
     }
 }

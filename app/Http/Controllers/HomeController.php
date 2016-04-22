@@ -29,12 +29,11 @@ class HomeController extends Controller
     public function index()
     {
 
-        $tasklists = Cache::remember("teamwork_info" . Auth::user()->id, 14400, function ()
+        $projectlist = Cache::remember("project_list" . Auth::user()->id, 14400, function ()
         {
             // Use Auth Key of the User
             config(['services.teamwork.key' => Auth::user()->teamwork_auth_key]);
 
-            $dev_tasklists = array();
             $projectlist = array();
             $projects = Teamwork::project()->all()['projects'];
             foreach ($projects as $project)
@@ -57,25 +56,25 @@ class HomeController extends Controller
                                 }
                             }
                         }
-                        $dev_tasklists[$project['name']] = $tasklist;
                         $project_to_add = array();
                         $project_to_add['id'] = $project['id'];
                         $project_to_add['name'] = $project['name'];
+                        $project_to_add['dev_tasklist_id'] = $tasklist['id'];
+                        $project_to_add['dev_tasklist_email'] = $tasklist['mailaddress'];
                         $projectlist[] = $project_to_add;
 
                     }
                 }
             }
-            return ['json' => json_encode($dev_tasklists),
-                'projects' => $projectlist
-            ];
+            return $projectlist;
         });
 
         JavaScript::put([
-            "tasklists_json" => $tasklists['json'],
-            "teamwork_auth_key" => Auth::user()->teamwork_auth_key
+//            "tasklists_json" => $tasklists['json'],
+            "teamwork_auth_key" => Auth::user()->teamwork_auth_key,
+            "project_list" => $projectlist
         ]);
 
-        return view('home',['projects' => $tasklists['projects']]);
+        return view('home');
     }
 }
