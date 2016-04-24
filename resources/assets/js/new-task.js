@@ -15,7 +15,7 @@ new Vue({
         new_task_name: "" //needed for data binding
     },
     methods: {
-        resetTask: function() {
+        resetTask: function () {
             console.debug('reset task');
             var due_date_in_days = 2,
 
@@ -33,20 +33,20 @@ new Vue({
 
             this.step = 1;
         },
-        chooseProject: function(tasklist_id) {
-            console.debug('chooseProject',tasklist_id);
+        chooseProject: function (tasklist_id) {
+            console.debug('chooseProject', tasklist_id);
             this.tasklist_id = tasklist_id;
 
-            if(this.step == 1){
+            if (this.step == 1) {
                 this.step++;
             }
 
-            Vue.nextTick(function() {
-            jQuery('#new-task-name').focus();
+            Vue.nextTick(() => {
+                jQuery('#new-task-name').focus();
             });
         },
-        addTask: function() {
-            if(this.new_task_name.length < 1 || this.tasklist_id.length < 1) {
+        addTask: function () {
+            if (this.new_task_name.length < 1 || this.tasklist_id.length < 1) {
                 console.error('invalid data');
                 return;
             }
@@ -54,19 +54,21 @@ new Vue({
             this.new_task.content = this.new_task_name;
 
 
-            ////send it baby
-            //this.$http.post('https://campaigningbureau.teamwork.com/tasklists/'+this.tasklist_id+'/tasks.json',this.new_task).then(
-            //    function(response) { console.debug(response); },
-            //    function(response) { console.debug(response); }
-            //);
+            //send it baby
+            this.$http.post('https://campaigningbureau.teamwork.com/tasklists/' + this.tasklist_id + '/tasks.json',
+                {
+                    "todo-item": this.new_task
+                }).then(
+                function (response) {
+                    console.debug(response);
+                },
+                function (response) {
+                    console.debug(response);
+                }
+            );
         }
     },
-    created: function() {
+    created: function () {
         this.resetTask();
-
-        this.$http.get('https://campaigningbureau.teamwork.com/projects.json').then(
-            function(response) { console.debug(response); },
-            function(response) { console.debug(response); }
-        );
     }
 });

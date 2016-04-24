@@ -80,6 +80,6 @@
     <script src="/vendor/jquery.min.js"></script>
     <script src="/vendor/bootstrap.min.js"></script>
     <script src="/vendor/moment.min.js"></script>
-    <script src="{{ elixir('js/all.js') }}"></script>
+    <script src="{{ elixir('js/main.js') }}"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
+
 var elixir = require('laravel-elixir'),
     gulp   = require('gulp'),
     util   = require('gulp-util');
+
+require('laravel-elixir-vueify');
 
 /*
  |--------------------------------------------------------------------------
@@ -27,6 +30,6 @@ elixir(function(mix) {
         .copy('node_modules/moment/min/moment.min.js', 'public/vendor/moment.min.js');
 
     mix.sass('app.scss')
-       .babel('*.js')
-       .version(['css/app.css','js/all.js']);
+        .browserify('main.js')
+        .version(['css/app.css','js/main.js']);
 });

@@ -20,7 +20,7 @@
             <div class="section-body">
                 <div class="input-group">
                     <input id="new-task-name" type="text" class="form-control input-lg" placeholder="could you please..."
-                            v-model="new_task_name">
+                            v-model="new_task_name" v-on:keyup.enter="addTask">
                     <span class="input-group-btn">
                         <a class="btn btn-lg btn-primary" v-on:click="addTask">Submit</a>
                     </span>

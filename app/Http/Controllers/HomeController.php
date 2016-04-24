@@ -71,7 +71,7 @@ class HomeController extends Controller
 
         JavaScript::put([
 //            "tasklists_json" => $tasklists['json'],
-            "teamwork_auth_key" => Auth::user()->teamwork_auth_key,
+            "teamwork_auth_key" => base64_encode(Auth::user()->teamwork_auth_key),
             "project_list" => $projectlist
         ]);
 
