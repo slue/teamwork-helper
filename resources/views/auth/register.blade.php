@@ -39,7 +39,8 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('teamwork_auth_key') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Teamwork Auth Key</label>
+                            <label class="col-md-4 control-label">Teamwork Auth Key &nbsp;<a href="http://developer.teamwork.com/enabletheapiandgetyourkey" target="_blank"><i class="fa fa-info-circle"></i></a>
+                            </label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="teamwork_auth_key" value="{{ old('teamwork_auth_key') }}">
