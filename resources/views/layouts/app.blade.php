@@ -77,6 +77,7 @@
     <!-- JavaScripts -->
     <script src="/vendor/vue.js"></script>
     <script src="/vendor/vue-resource.js"></script>
+    <script src="/vendor/vuex.js"></script>
     <script src="/vendor/jquery.min.js"></script>
     <script src="/vendor/bootstrap.min.js"></script>
     <script src="/vendor/moment.min.js"></script>

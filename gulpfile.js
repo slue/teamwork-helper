@@ -19,6 +19,7 @@ require('laravel-elixir-vueify');
 elixir(function(mix) {
     mix.copy('node_modules/vue/dist/vue.js', 'public/vendor/vue.js')
         .copy('node_modules/vue-resource/dist/vue-resource.js', 'public/vendor/vue-resource.js')
+        .copy('node_modules/vuex/dist/vuex.js', 'public/vendor/vuex.js')
         .copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/bootstrap.min.js')
         .copy('node_modules/jquery/dist/jquery.min.js', 'public/vendor/jquery.min.js')
 

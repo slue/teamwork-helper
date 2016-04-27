@@ -2,19 +2,20 @@
     <div id="new-task" class="panel panel-default">
         <div class="panel-heading">Add New Teamwork Task</div>
         <div class="panel-body">
-            <section>
+            <section transition="fade">
                 <header>
                     <h4>1. Choose your project:</h4>
+                    <span class="help"><i class="fa fa-info-circle"></i> - only projects with a tasklist called <strong>DEV</strong> are listed here</span>
                 </header>
                 <div class="section-body">
                     <div class="project-list">
-                        <a v-for="project in projects" v-on:click="chooseProject(project.dev_tasklist_id)"
+                        <a v-for="project in projects" @click="chooseProject(project.dev_tasklist_id, project.name)"
                            v-bind:class="{ 'is-selected' : project.dev_tasklist_id == tasklist_id }"
                            class="btn btn-primary btn-toggle">{{ project.name }}</a>
                     </div>
                 </div>
             </section>
-            <section v-if="step > 1" transition="add-section">
+            <section v-if="step > 1" transition="fade">
                 <header>
                     <h4>2. What's the problem?</h4>
                 </header>
@@ -25,10 +26,10 @@
                                class="form-control input-lg"
                                placeholder="could you please..."
                                v-model="new_task_name"
-                               v-on:keyup.enter="addTask">
-                    <span class="input-group-btn">
-                        <a class="btn btn-lg btn-primary" v-on:click="addTask">Submit</a>
-                    </span>
+                               @keyup.enter="tryAddTask">
+                            <span class="input-group-btn">
+                                <a class="btn btn-lg btn-primary" @click="tryAddTask">Submit</a>
+                            </span>
                     </div>
                 </div>
             </section>
@@ -37,19 +38,30 @@
 </template>
 
 <script type="text/ecmascript-6">
-    module.exports = {
+
+    import {
+            addTask
+    } from '../vuex/actions'
+
+    export default {
         data   : () => {
             return {
-                projects     : project_list,
-                step         : 1,
-                new_task     : {},
-                tasklist_id  : "",
-                new_task_name: "" //needed for data binding
+                projects            : project_list,
+                step                : 1,
+                new_task            : {},
+                tasklist_id         : "",
+                current_project_name: "",
+                new_task_name       : "" //needed for data binding
+            }
+        },
+        vuex   : {
+            actions: {
+                addTask
             }
         },
         methods: {
-            resetTask    : function() {
-                console.debug('reset task');
+            resetTask     : function(step = 1) {
+
                 var due_date_in_days = 2,
 
                     today            = moment(),
@@ -63,22 +75,33 @@
                     "start-date": today.format('YYYYMMDD'),
                     "due-date"  : tomorrow.format('YYYYMMDD'),
                 };
+                this.new_task_name = "";
 
-                this.step = 1;
+                this.step = step;
+
+                if(step == 2) {
+                    this._focusTaskName();
+                }
             },
-            chooseProject: function(tasklist_id) {
+            chooseProject : function(tasklist_id, project_name) {
                 console.debug('chooseProject', tasklist_id);
-                this.tasklist_id = tasklist_id;
+                this.tasklist_id          = tasklist_id;
+                this.current_project_name = project_name;
 
                 if(this.step == 1) {
                     this.step++;
                 }
 
+                this._focusTaskName();
+            },
+            _focusTaskName: () => {
                 Vue.nextTick(() => {
                     jQuery('#new-task-name').focus();
                 });
             },
-            addTask      : function() {
+            tryAddTask    : function() {
+                var self = this;
+
                 if(this.new_task_name.length < 1 || this.tasklist_id.length < 1) {
                     console.error('invalid data');
                     return;
@@ -86,16 +109,18 @@
 
                 this.new_task.content = this.new_task_name;
 
-
                 //send it baby
                 this.$http.post('https://campaigningbureau.teamwork.com/tasklists/' + this.tasklist_id + '/tasks.json',
                         {
                             "todo-item": this.new_task
                         }).then(
                         function(response) {
-                            console.debug(response);
+                            this.addTask(123123, this.new_task_name, this.current_project_name);
+                            this.resetTask(2);
+
                         },
                         function(response) {
+                            alert('Es gab leider einen Fehler:'+response);
                             console.debug(response);
                         }
                 );
