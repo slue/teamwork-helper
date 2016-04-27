@@ -26,9 +26,10 @@
                                class="form-control input-lg"
                                placeholder="could you please..."
                                v-model="new_task_name"
-                               @keyup.enter="tryAddTask">
+                               @keyup.enter="tryAddTask"
+                               :disabled="submitting" >
                             <span class="input-group-btn">
-                                <a class="btn btn-lg btn-primary" @click="tryAddTask">Submit</a>
+                                <a class="btn btn-lg btn-primary" @click="tryAddTask" :disabled="submitting">&nbsp;<i class="fa fa-fw" v-bind:class="{'fa-spin fa-circle-o-notch': submitting, 'fa-send': !submitting}"></i></a>
                             </span>
                     </div>
                 </div>
@@ -51,6 +52,7 @@
                 new_task            : {},
                 tasklist_id         : "",
                 current_project_name: "",
+                submitting          : false,
                 new_task_name       : "" //needed for data binding
             }
         },
@@ -68,7 +70,7 @@
                     tomorrow         = moment().add(due_date_in_days, 'days');
 
 
-                this.new_task = {
+                this.new_task      = {
                     "content": "",
                     "notify" : true,
 
@@ -76,7 +78,7 @@
                     "due-date"  : tomorrow.format('YYYYMMDD'),
                 };
                 this.new_task_name = "";
-
+                this.submitting = false;
                 this.step = step;
 
                 if(step == 2) {
@@ -100,13 +102,13 @@
                 });
             },
             tryAddTask    : function() {
-                var self = this;
-
+                if(this.submitting) return;
                 if(this.new_task_name.length < 1 || this.tasklist_id.length < 1) {
                     console.error('invalid data');
                     return;
                 }
 
+                this.submitting = true;
                 this.new_task.content = this.new_task_name;
 
                 //send it baby
@@ -117,10 +119,10 @@
                         function(response) {
                             this.addTask(123123, this.new_task_name, this.current_project_name);
                             this.resetTask(2);
-
                         },
                         function(response) {
-                            alert('Es gab leider einen Fehler:'+response);
+                            alert('Es gab leider einen Fehler:' + response);
+                            this.resetTask();
                             console.debug(response);
                         }
                 );

@@ -11,6 +11,10 @@
     &:focus {
         border-color: $brand-primary;
     }
+
+    &[disabled] {
+        background-color: inherit;
+    }
 }
 
 .input-group-btn {
