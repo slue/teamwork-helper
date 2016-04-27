@@ -1,3 +1,5 @@
+import middlewares from './middlewares'
+
 export const STORAGE_KEY = 'teamwork-helper'
 
 const state = {
@@ -16,5 +18,6 @@ const mutations = {
 
 export default new Vuex.Store({
     state,
-    mutations
+    mutations,
+    middlewares
 })

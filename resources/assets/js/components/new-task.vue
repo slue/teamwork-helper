@@ -111,6 +111,7 @@
                 this.submitting = true;
                 this.new_task.content = this.new_task_name;
 
+
                 //send it baby
                 this.$http.post('https://campaigningbureau.teamwork.com/tasklists/' + this.tasklist_id + '/tasks.json',
                         {

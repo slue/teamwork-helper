@@ -13,7 +13,7 @@
                     <div class="panel-heading">Recently created tasks</div>
                     <div class="panel-body">
                         <ul class="task-list">
-                            <li v-for="task in last_tasks">
+                            <li v-for="task in last_tasks | limitBy 15">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <span class="text-primary proj-name-label">@{{ task.project_name }}</span>
